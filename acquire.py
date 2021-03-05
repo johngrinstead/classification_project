@@ -22,7 +22,7 @@ def get_telco_data():
         return pd.read_csv(filename)
     else:
         # read the SQL query into a dataframe
-        df = pd.read_sql(sql, get_connection('titanic_db'))
+        df = pd.read_sql(sql, get_connection('telco_churn'))
 
         # Write that dataframe to disk for later. Called "caching" the data for later.
         df.to_file(filename)
