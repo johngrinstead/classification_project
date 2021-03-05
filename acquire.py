@@ -15,18 +15,10 @@ def get_connection(db, user=env.user, host=env.host, password=env.password):
 
 import os
 
+import os
+
 def get_telco_data():
     filename = "telco.csv"
-
-    if os.path.isfile(filename):
-        return pd.read_csv(filename)
-    else:
-        # read the SQL query into a dataframe
-        df = pd.read_sql(sql, get_connection('telco_churn'))
-
-        # Write that dataframe to disk for later. Called "caching" the data for later.
-        df.to_file(filename)
-
-        # Return the dataframe to the calling code
-        return df  
+    df = pd.read_csv(filename)
+    return df  
 
