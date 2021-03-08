@@ -4,7 +4,7 @@ from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import train_test_split
 
 
-def prep_teclo(df):
+def prep_telco(df):
     df = df.drop_duplicates()
     
     cols_to_drop = ['Unnamed: 0']
@@ -21,6 +21,10 @@ def prep_teclo(df):
     new_df = df.drop(columns = ['gender', 'partner', 'dependents', 'phone_service', 'multiple_lines', 'online_security', 'device_protection', 'tech_support', 'streaming_tv', 'streaming_movies', 'paperless_billing', 'churn', 'contract_type', 'internet_service_type', 'payment_type', 'payment_type_id', 'internet_service_type_id', 'contract_type_id', 'online_backup'])    
     
     new_df = pd.concat([new_df, dummy_df], axis=1)
+    
+    new_df['live_alone'] = (new_df['partner'] == 0) & (new_df['dependents'] == 0)
+    
+    new_df['new_customer'] = new_df['tenure'] < 6
     
     return new_df
 
