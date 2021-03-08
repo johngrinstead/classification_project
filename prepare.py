@@ -18,10 +18,10 @@ def prep_telco(df):
     
     dummy_df = dummy_df.drop(columns = ['device_protection_No internet service', 'tech_support_No internet service', 'streaming_tv_No internet service', 'streaming_movies_No internet service', 'internet_service_type_None', 'online_backup_No internet service'])    
     
-    new_df = df.drop(columns = ['gender', 'partner', 'dependents', 'phone_service', 'multiple_lines', 'online_security', 'device_protection', 'tech_support', 'streaming_tv', 'streaming_movies', 'paperless_billing', 'churn', 'contract_type', 'internet_service_type', 'payment_type', 'payment_type_id', 'internet_service_type_id', 'contract_type_id', 'online_backup'])    
+    new_df = df.drop(columns = ['customer_id', 'gender', 'partner', 'dependents', 'phone_service', 'multiple_lines', 'online_security', 'device_protection', 'tech_support', 'streaming_tv', 'streaming_movies', 'paperless_billing', 'churn', 'contract_type', 'internet_service_type', 'payment_type', 'payment_type_id', 'internet_service_type_id', 'contract_type_id', 'online_backup'])    
     
     new_df = pd.concat([new_df, dummy_df], axis=1)
-    
+
     new_df['live_alone'] = (new_df['partner'] == 0) & (new_df['dependents'] == 0)
     
     new_df['new_customer'] = new_df['tenure'] < 6
