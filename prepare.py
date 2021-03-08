@@ -3,7 +3,7 @@ from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import train_test_split
 
 
-def prep_teclo(df):
+def prep_telco(df):
     df = df.drop_duplicates()
     
     cols_to_drop = ['Unnamed: 0']
