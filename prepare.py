@@ -12,6 +12,8 @@ def prep_telco(df):
     
     df['total_charges'] = pd.to_numeric(df['total_charges'], errors='coerce')
     
+    df['total_charges'] = df['monthly_charges'] * df['tenure']
+
     dummy_df = pd.get_dummies(df[['gender','partner','dependents','phone_service','multiple_lines', 'online_security','device_protection','tech_support','streaming_tv','streaming_movies','paperless_billing','churn','contract_type','internet_service_type','payment_type', 'online_backup']], dummy_na=False, drop_first=[True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True])
     
     dummy_df = dummy_df.rename(columns = {'gender_Male' : 'male', 'partner_Yes' : 'partner', 'dependents_Yes' : 'dependents', 'phone_service_Yes' : 'phone_service', 'multiple_lines_No phone service' : 'no_phone_service', 'multiple_lines_Yes' : 'multiple_lines', 'online_security_No internet service' : 'no_internet_service', 'online_security_Yes' : 'online_security', 'device_protection_Yes' : 'device_protection', 'tech_support_Yes' : 'tech_support', 'streaming_tv_Yes' : 'streaming_tv', 'streaming_movies_Yes' : 'streaming_movies', 'paperless_billing_Yes' : 'paperless', 'churn_Yes' : 'churn', 'contract_type_One year' : 'one_year', 'contract_type_Two year' : 'two_year', 'internet_service_type_Fiber optic' : 'fiber_optic', 'payment_type_Credit card (automatic)' : 'credit_card', 'payment_type_Electronic check' : 'electric_check', 'payment_type_Mailed check' : 'mailed_check', 'online_backup_Yes' : 'online_backup'})    
